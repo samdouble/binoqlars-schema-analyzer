@@ -1,0 +1,25 @@
+{
+  "name": "mongodb-schema-analyzer",
+  "version": "1.0.0",
+  "description": "A schema analyzer for MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samdouble/mongodb-schema-analyzer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samdouble/mongodb-schema-analyzer/issues"
+  },
+  "homepage": "https://github.com/samdouble/mongodb-schema-analyzer#readme",
+  "dependencies": {
+    "commander": "^8.1.0",
+    "dotenv": "^10.0.0",
+    "flat": "^5.0.2",
+    "mongoose": "^5.13.8"
+  }
+}
