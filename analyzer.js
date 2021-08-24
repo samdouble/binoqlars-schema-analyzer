@@ -30,13 +30,13 @@ if (options.pizzaType) console.log(`- ${options.pizzaType}`);
     const flatFight = flat(fight);
     Object.entries(flatFight)
       .forEach(([key, value]) => {
-        if (!allKeys.hasOwnProperty(key)) {
+        if (!Object.prototype.hasOwnProperty.call(allKeys, key)) {
           allKeys[key] = {
             usedIn: 0,
             values: new Set(),
           };
         }
-        allKeys[key].usedIn++;
+        allKeys[key].usedIn += 1;
         allKeys[key].values.add(value);
       });
   }
