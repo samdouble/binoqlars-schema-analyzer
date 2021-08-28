@@ -30,6 +30,18 @@ jobs:
           name: Linting
           command: npm run lint
 
+  audit:
+    docker:
+      - image: cimg/node:14.17.5
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v12-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Security audit
+          command: npm audit
+
   test:
     docker:
       - image: cimg/node:10.16.3
@@ -39,7 +51,7 @@ jobs:
           keys:
             - v12-dependencies-{{ checksum "package-lock.json" }}
       - run:
-          name: Linting
+          name: Test
           command: npm run test
 
 workflows:
@@ -48,6 +60,9 @@ workflows:
     jobs:
       - install
       - lint:
+          requires:
+            - install
+      - audit:
           requires:
             - install
       - test:
