@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node analyzer.js",
     "lint": "eslint \"./**/*.js\"",
-    "test": "c8 --all mocha --check-leaks --parallel --recursive \"./{,!(node_modules)/**}/*.test.js\""
+    "test": "c8 --all  --check-coverage --lines 0 --functions 0 --branches 0 mocha --check-leaks --parallel --recursive \"./{,!(node_modules)/**}/*.test.js\""
   },
   "repository": {
     "type": "git",
