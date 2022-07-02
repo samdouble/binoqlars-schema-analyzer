@@ -3,6 +3,7 @@ const { Command } = require('commander');
 const flat = require('flat');
 const mongoConnect = require('./db');
 const GenericSchema = require('./GenericSchema');
+const KeysObject = require('./KeysObject');
 
 const program = new Command();
 program.version('0.0.1');
@@ -21,25 +22,20 @@ if (options.pizzaType) console.log(`- ${options.pizzaType}`);
 (async () => {
   await mongoConnect(process.env.MONGO_URL);
 
-  const allKeys = {};
+  const allKeys = new KeysObject();
 
-  const fights = await GenericSchema.find().lean().exec();
+  const fights = await GenericSchema.find({ date: { $gt: '2000-01-01', $lt: '2022-07-01' }}).lean().exec();
 
   const nbDocuments = fights.length;
   for (const fight of fights) {
     const flatFight = flat(fight);
     Object.entries(flatFight)
       .forEach(([key, value]) => {
-        if (!Object.prototype.hasOwnProperty.call(allKeys, key)) {
-          allKeys[key] = {
-            usedIn: 0,
-            values: new Set(),
-          };
-        }
-        allKeys[key].usedIn += 1;
-        allKeys[key].values.add(value);
+        allKeys.addValue(key, value, fight.id);
       });
   }
 
-  console.log(nbDocuments, allKeys);
+  console.log(nbDocuments, Object.entries(allKeys.toString()).filter(([key, value]) => {
+    return value.nullIn !== 0;
+  }));
 })();
