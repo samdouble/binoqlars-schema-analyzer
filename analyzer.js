@@ -24,7 +24,7 @@ if (options.pizzaType) console.log(`- ${options.pizzaType}`);
 
   const allKeys = new KeysObject();
 
-  const fights = await GenericSchema.find({ date: { $gt: '2000-01-01', $lt: '2022-07-01' }}).lean().exec();
+  const fights = await GenericSchema.find({ date: { $gt: '2000-01-01', $lt: '2022-07-01' } }).lean().exec();
 
   const nbDocuments = fights.length;
   for (const fight of fights) {
@@ -35,7 +35,5 @@ if (options.pizzaType) console.log(`- ${options.pizzaType}`);
       });
   }
 
-  console.log(nbDocuments, Object.entries(allKeys.toString()).filter(([key, value]) => {
-    return value.nullIn !== 0;
-  }));
+  console.log(nbDocuments, Object.entries(allKeys.toString()).filter(([, value]) => value.nullIn !== 0 ));
 })();
