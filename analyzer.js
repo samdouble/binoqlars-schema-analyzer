@@ -35,5 +35,8 @@ if (options.pizzaType) console.log(`- ${options.pizzaType}`);
       });
   }
 
-  console.log(nbDocuments, Object.entries(allKeys.toString()).filter(([, value]) => value.nullIn !== 0 ));
+  console.log(
+    nbDocuments,
+    Object.entries(allKeys.toString()).filter(([, value]) => value.nullIn !== 0 ),
+  );
 })();
