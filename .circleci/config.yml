@@ -3,7 +3,7 @@ version: 2
 jobs:
   install:
     docker:
-      - image: cimg/node:14.17.5
+      - image: cimg/node:18.3.0
     steps:
       - checkout
       - restore_cache:
@@ -12,59 +12,18 @@ jobs:
             - v14-dependencies-
       - run:
           name: Install Dependencies
-          command: npm install
+          command: |
+            npm install
+            npm run lint
+            npm run audit
+            npm run test
       - save_cache:
           paths:
             - node_modules
           key: v14-dependencies-{{ checksum "package-lock.json" }}
-
-  lint:
-    docker:
-      - image: cimg/node:14.17.5
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v14-dependencies-{{ checksum "package-lock.json" }}
-      - run:
-          name: Linting
-          command: npm run lint
-
-  audit:
-    docker:
-      - image: cimg/node:14.17.5
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v14-dependencies-{{ checksum "package-lock.json" }}
-      - run:
-          name: Security audit
-          command: npm audit
-
-  test:
-    docker:
-      - image: cimg/node:14.17.5
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v14-dependencies-{{ checksum "package-lock.json" }}
-      - run:
-          name: Test
-          command: npm run test
 
 workflows:
   version: 2
   build:
     jobs:
       - install
-      - lint:
-          requires:
-            - install
-      - audit:
-          requires:
-            - install
-      - test:
-          requires:
-            - install
