@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-module.exports = async (mongoConnectionString) => {
+export default async (mongoConnectionString) => {
   mongoose.connect(mongoConnectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

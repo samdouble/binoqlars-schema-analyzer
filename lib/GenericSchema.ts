@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const COLLECTION_NAME = 'UFCFights';
 
@@ -9,4 +9,4 @@ const GenericSchema = new mongoose.Schema(
 
 const Generic = mongoose.model('Generic', GenericSchema, COLLECTION_NAME);
 
-module.exports = Generic;
+export default Generic;

@@ -3,13 +3,13 @@ version: 2
 jobs:
   install:
     docker:
-      - image: cimg/node:18.3.0
+      - image: cimg/node:18.11.0
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v14-dependencies-{{ checksum "package-lock.json" }}
-            - v14-dependencies-
+            - v18-dependencies-{{ checksum "package-lock.json" }}
+            - v18-dependencies-
       - run:
           name: Install Dependencies
           command: |
@@ -20,7 +20,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v14-dependencies-{{ checksum "package-lock.json" }}
+          key: v18-dependencies-{{ checksum "package-lock.json" }}
 
 workflows:
   version: 2

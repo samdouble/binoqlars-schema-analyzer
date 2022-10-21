@@ -1,6 +1,6 @@
-const util = require('util');
+import util from 'util';
 
-function KeysObject() {
+function KeysObject(this: any) {
   const allKeys = {};
 
   this.addValue = (key, value, id = null) => {
@@ -24,7 +24,7 @@ function KeysObject() {
   };
 
   this.toString = () => Object.entries(allKeys)
-    .reduce((acc, [key, value]) => {
+    .reduce((acc, [key, value]: [string, any]) => {
       const hasOnlyOneType = value.types.size === 1;
       return {
         ...acc,
@@ -44,4 +44,4 @@ function KeysObject() {
     }, {});
 }
 
-module.exports = KeysObject;
+export default KeysObject;
