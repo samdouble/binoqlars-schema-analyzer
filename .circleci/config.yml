@@ -3,7 +3,7 @@ version: 2
 jobs:
   install:
     docker:
-      - image: cimg/node:18.11.0-alpine
+      - image: node:18.11.0-alpine
     steps:
       - checkout
       - restore_cache:
