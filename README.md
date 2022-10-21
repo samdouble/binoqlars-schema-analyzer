@@ -12,7 +12,7 @@ A schema analyzer for MongoDB
 
 ## Running locally
 
-Create a file named **dev.env** and add the following environment variables in it:
+Create a file named **dev.env** at the root of the project and add the following environment variables in it:
 - MONGO_URL
 
 Run the following command:

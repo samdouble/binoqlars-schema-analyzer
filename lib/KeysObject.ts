@@ -23,7 +23,7 @@ function KeysObject(this: any) {
     }
   };
 
-  this.toString = () => Object.entries(allKeys)
+  this.toHuman = () => Object.entries(allKeys)
     .reduce((acc, [key, value]: [string, any]) => {
       const hasOnlyOneType = value.types.size === 1;
       return {
@@ -35,10 +35,10 @@ function KeysObject(this: any) {
             : util.inspect(value.null, { showHidden: false, depth: null }),
           values: value.values.size >= 10
             ? `${value.values.size} different values`
-            : Array.from(value.values),
+            : Array.from(value.values).sort(),
           types: hasOnlyOneType
             ? Array.from(value.types)[0]
-            : Array.from(value.types),
+            : Array.from(value.types).sort(),
         },
       };
     }, {});
