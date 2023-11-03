@@ -1,6 +1,7 @@
-FROM python:3.10.13-alpine
+FROM public.ecr.aws/lambda/python:3.11
 
-ADD main.py .
-RUN pip install requests beautifulsoup4 python-dotenv
+COPY requirements.txt ${LAMBDA_TASK_ROOT}
+RUN pip install -r requirements.txt
+COPY main.py ${LAMBDA_TASK_ROOT}
 
 CMD [“python”, “./main.py”] 
