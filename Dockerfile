@@ -1,7 +1,6 @@
-FROM node:18.11.0-alpine
+FROM python:3.10.13-alpine
 
-WORKDIR /analyzer
-COPY . /analyzer
-RUN npm install && npm run build
+ADD main.py .
+RUN pip install requests beautifulsoup4 python-dotenv
 
-RUN ["node", "build/index.js"]
+CMD [“python”, “./main.py”] 

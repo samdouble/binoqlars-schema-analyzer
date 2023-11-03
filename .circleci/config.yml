@@ -3,13 +3,9 @@ version: 2
 jobs:
   install:
     docker:
-      - image: node:18.11.0-alpine
+      - image: python:3.10.13-alpine
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v18-dependencies-{{ checksum "package-lock.json" }}
-            - v18-dependencies-
       - run:
           name: Install Dependencies
           command: |
@@ -17,10 +13,6 @@ jobs:
             npm run lint
             npm run audit
             npm run test
-      - save_cache:
-          paths:
-            - node_modules
-          key: v18-dependencies-{{ checksum "package-lock.json" }}
 
 workflows:
   version: 2
