@@ -1,8 +1,7 @@
-from abc import ABC
 import sys
-import lib.db
+from lib import db
 
-def handler(event, context):
+def handler():
     db.get_database()
     print("Hello World!")
     return 'Hello from AWS Lambda using Python' + sys.version + '!'
