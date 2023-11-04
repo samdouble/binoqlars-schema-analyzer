@@ -1,8 +1,8 @@
 import sys
-from lib import db
+from lib.db import get_database
 
 def handler():
-    db.get_database()
+    get_database()
     print("Hello World!")
     return 'Hello from AWS Lambda using Python' + sys.version + '!'
 
