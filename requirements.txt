@@ -1,1 +1,2 @@
 awslambdaric==2.0.8
+pymongo==4.6.0
