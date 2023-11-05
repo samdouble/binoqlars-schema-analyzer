@@ -1,11 +1,11 @@
 import sys
-from lib.utils.db import get_database
-from lib import KeysObject
+from lib.utils.db.db import get_database
+from lib.KeysObject import KeysObject
 
 def handler():
     get_database()
 
-    all_keys = KeysObject()
+    #all_keys = KeysObject()
 
     print("Hello World!")
     return 'Hello from AWS Lambda using Python' + sys.version + '!'
