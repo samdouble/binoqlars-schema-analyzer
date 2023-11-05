@@ -1,6 +1,6 @@
 import sys
-from lib.utils.db.db import get_database
-from lib.KeysObject import KeysObject
+from lib.utils.db import get_database
+#from lib.KeysObject import KeysObject
 
 def handler():
     get_database()
