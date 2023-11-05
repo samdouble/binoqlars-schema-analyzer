@@ -1,5 +1,5 @@
 import sys
-from lib.db import get_database
+from lib.utils.db import get_database
 
 def handler():
     get_database()
