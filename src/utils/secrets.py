@@ -13,13 +13,16 @@
 
 import boto3
 from botocore.exceptions import ClientError
-
+import os
 
 def get_secret():
-    secret_name = "datajitsu_6c98210f-ff3b-4d4a-8935-698fe2ad0287"
+    secret_name = 'datajitsu_6c98210f-ff3b-4d4a-8935-698fe2ad0287'
 
     # Create a Secrets Manager client
-    session = boto3.session.Session()
+    session = boto3.session.Session(
+        os.getenv('AWS_ACCESS_KEY_ID_'),
+        os.getenv('AWS_SECRET_ACCESS_KEY_'),
+    )
     client = session.client(
         service_name='secretsmanager',
         region_name='ca-central-1'
