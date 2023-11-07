@@ -3,7 +3,8 @@ from src.utils.db import get_database
 from src.utils.secrets import get_secret
 #from src.KeysObject import KeysObject
 
-def handler():
+def handler(event, context):
+    print(event, context)
     get_database()
 
     #all_keys = KeysObject()
