@@ -1,14 +1,15 @@
 import sys
 from src.utils.db import get_database
-from src.utils.secrets import get_secret
+from src.utils.secrets.MongoDbAtlasSecretsManager import MongoDbAtlasSecretsManager
 #from src.KeysObject import KeysObject
 
 def handler(event, context):
     print(event, context)
-    get_database()
+
+    print(get_database())
 
     #all_keys = KeysObject()
-    print(get_secret())
+    print(MongoDbAtlasSecretsManager.get_connection_string())
 
     print("Hello World!")
     return 'Hello from AWS Lambda using Python' + sys.version + '!'
