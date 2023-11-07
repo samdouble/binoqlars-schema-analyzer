@@ -4,7 +4,7 @@ WORKDIR ${LAMBDA_TASK_ROOT}/build
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY main.py .
-COPY lib ./lib
+COPY src ./src
 
 ENTRYPOINT ["python", "-m", "awslambdaric"]
 CMD ["main.handler"]
