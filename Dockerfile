@@ -1,8 +1,10 @@
 FROM public.ecr.aws/lambda/python:3.11
 
-COPY requirements.txt ${LAMBDA_TASK_ROOT}
+WORKDIR ${LAMBDA_TASK_ROOT}/build
+COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY main.py lib ${LAMBDA_TASK_ROOT}
+COPY main.py .
+COPY lib ./lib
 
 ENTRYPOINT ["python", "-m", "awslambdaric"]
 CMD ["main.handler"]
