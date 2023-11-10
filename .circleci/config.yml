@@ -23,8 +23,8 @@ jobs:
       - run:
           name: Build and release
           command: |
-            export IMAGE_URL=833465769753.dkr.ecr.ca-central-1.amazonaws.com/datajitsu-schema-analyzer
-            export FUNCTION_NAME=datajitsu-schema-analyzer
+            export IMAGE_URL=833465769753.dkr.ecr.ca-central-1.amazonaws.com/binoqlars-schema-analyzer
+            export FUNCTION_NAME=binoqlars-schema-analyzer
             aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 833465769753.dkr.ecr.$AWS_REGION.amazonaws.com
             docker build -t $IMAGE_URL .
             docker push $IMAGE_URL
