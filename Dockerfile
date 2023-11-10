@@ -1,7 +1,11 @@
-FROM node:18.11.0-alpine
+FROM public.ecr.aws/lambda/python:3.11
 
-WORKDIR /analyzer
-COPY . /analyzer
-RUN npm install && npm run build
+WORKDIR ${LAMBDA_TASK_ROOT}/build
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+COPY main.py .
+COPY src ./src
 
-RUN ["node", "build/index.js"]
+ENTRYPOINT ["python", "-m", "awslambdaric"]
+CMD ["main.handler"]

@@ -1,29 +1,37 @@
-version: 2
+version: 2.1
+
+orbs: 
+  aws-cli: circleci/aws-cli@3.1.1
 
 jobs:
-  install:
+  build:
     docker:
-      - image: node:18.11.0-alpine
+      - image: cimg/python:3.11.6
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v18-dependencies-{{ checksum "package-lock.json" }}
-            - v18-dependencies-
+      - aws-cli/setup
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
-          name: Install Dependencies
+          name: Lint, audit and test
           command: |
-            npm install
-            npm run lint
-            npm run audit
-            npm run test
-      - save_cache:
-          paths:
-            - node_modules
-          key: v18-dependencies-{{ checksum "package-lock.json" }}
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            pylint *.py
+            pip-audit
+            python -m unittest *.py
+      - run:
+          name: Build and release
+          command: |
+            export IMAGE_URL=833465769753.dkr.ecr.ca-central-1.amazonaws.com/binoqlars-schema-analyzer
+            export FUNCTION_NAME=binoqlars-schema-analyzer
+            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 833465769753.dkr.ecr.$AWS_REGION.amazonaws.com
+            docker build -t $IMAGE_URL .
+            docker push $IMAGE_URL
+            aws lambda update-function-code --region $AWS_REGION --function-name $FUNCTION_NAME --image-uri $IMAGE_URL:latest
 
 workflows:
   version: 2
-  build:
+  build-workflow:
     jobs:
-      - install
+      - build
