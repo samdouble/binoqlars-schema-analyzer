@@ -13,7 +13,7 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - run:
-          name: Install Dependencies
+          name: Lint, audit and test
           command: |
             pip install --upgrade pip
             pip install -r requirements.txt
@@ -29,7 +29,6 @@ jobs:
             docker build -t $IMAGE_URL .
             docker push $IMAGE_URL
             aws lambda update-function-code --region $AWS_REGION --function-name $FUNCTION_NAME --image-uri $IMAGE_URL:latest
-
 
 workflows:
   version: 2

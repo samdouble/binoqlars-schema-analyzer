@@ -9,3 +9,4 @@ class MongoDbAtlasSecretsManager(SecretsManager):
         json_secret = json.loads(secret)
         connection_string = json_secret['CONNECTION_STRING']
         return connection_string
+ 
