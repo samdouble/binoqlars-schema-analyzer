@@ -1,5 +1,5 @@
 import json
-from src.utils.secrets.SecretsManager import SecretsManager
+from src.utils.secrets.secrets_manager import SecretsManager
 
 class MongoDbAtlasSecretsManager(SecretsManager):
     @classmethod
