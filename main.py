@@ -1,14 +1,25 @@
-import sys
-from src.utils.db import get_database
+import json
+from src.controllers.checks.checks_controller import ChecksController
+from src.controllers.connections.connections_controller import ConnectionsController
+from src.utils.database.mongodb_connection import MongoDbConnection
 from src.utils.secrets.mongodbatlas_secrets_manager import MongoDbAtlasSecretsManager
-#from src.keys_object import KeysObject
 
 def handler(_event, _context):
-    database = get_database()
-    print(database)
+    check = ChecksController.get_one()
+    print("Check", check)
 
-    #all_keys = KeysObject()
-    print(MongoDbAtlasSecretsManager.get_connection_string())
+    connection = ConnectionsController.get_one({
+        id: check["connectionId"],
+    })
+    print("Connection", connection)
 
-    print("Hello World!")
-    return 'Hello from AWS Lambda using Python' + sys.version + '!'
+    connection_string = MongoDbAtlasSecretsManager.get_connection_string(connection["key"])
+    print("Connection string", connection_string)
+
+    database_connection = MongoDbConnection(connection_string)
+    collection = database_connection[connection["database"]][check["collection"]]
+    filter = json.loads(check["filter"])
+    result = collection.find_one(filter)
+    print("Result", result)
+
+    return result
