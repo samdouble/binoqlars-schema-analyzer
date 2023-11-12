@@ -9,7 +9,7 @@ def handler(_event, _context):
     print("Check", check)
 
     connection = ConnectionsController.get_one({
-        id: check["connectionId"],
+        "id": check["connectionId"],
     })
     print("Connection", connection)
 
