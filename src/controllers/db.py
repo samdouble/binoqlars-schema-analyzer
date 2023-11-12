@@ -9,4 +9,4 @@ class MainDbConnection:
         self._connection = MongoDbConnection(os.getenv("MONGODB_URL"))
 
     def get_database(self):
-        return self._connection['app']
+        return self._connection.get_client()['app']

@@ -6,4 +6,7 @@ class MongoDbConnection(Connection):
 
     def __init__(self, connection_string):
         super().__init__()
-        self.client = MongoClient(connection_string)
+        self._client = MongoClient(connection_string)
+
+    def get_client(self):
+        return self._client
