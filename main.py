@@ -23,4 +23,4 @@ def handler(_event, _context):
     result = collection.find_one(filt)
     print("Result", result)
 
-    return result
+    return result["date"] + " " + result["red"]["name"] + " vs " + result["blue"]["name"]
