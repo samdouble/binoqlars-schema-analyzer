@@ -18,8 +18,8 @@ def handler(_event, _context):
 
     database_connection = MongoDbConnection(connection_string)
     collection = database_connection[connection["database"]][check["collection"]]
-    filter = json.loads(check["filter"])
-    result = collection.find_one(filter)
+    filt = json.loads(check["filter"])
+    result = collection.find_one(filt)
     print("Result", result)
 
     return result
