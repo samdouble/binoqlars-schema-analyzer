@@ -10,5 +10,3 @@ class MainDbConnection:
 
     def get_database(self):
         return self._connection['app']
-    
-def
