@@ -20,13 +20,13 @@ class Check:
 
     def _execute_actions(self):
         # Get referenced actions from the database
-        print(self.actions, type(self.actions))
         actions = ActionsController.get({
             "id": {
                 "$in": map(lambda a: a["id"], self.actions)
             },
         })
         # Execute actions
+        print(map(lambda a: a.id, actions))
         for json_action in self.actions:
             action_id = json_action["id"]
             action = next(filter(lambda a: a.id == action_id, actions))
