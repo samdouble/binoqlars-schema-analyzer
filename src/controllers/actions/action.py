@@ -10,7 +10,7 @@ class Action(ABC):
         from src.controllers.actions.action import EmailAction
 
         if (json_object["type"] == "Email"):
-            return EmailAction.from_json(json_object)
+            return EmailAction(json_object)
         raise
 
     def get_id(self):
