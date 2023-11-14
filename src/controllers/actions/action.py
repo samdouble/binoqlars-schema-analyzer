@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
 class Action(ABC):
+
+    def __init__(self, json_object):
+        self.id = json_object["id"]
     
     @classmethod
     def from_json(cls, json_object):
@@ -9,6 +12,9 @@ class Action(ABC):
         if (json_object["type"] == "Email"):
             return EmailAction.from_json(json_object)
         raise
+
+    def get_id(self):
+        return self.id
 
     @abstractmethod
     def execute(self):
