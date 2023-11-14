@@ -8,6 +8,7 @@ class ActionsController:
         database = MainDbConnection.instance().get_database()
         collection = database['actions']
         json_actions = collection.find(filt)
+        print(Action.from_json(json_actions[0]))
         return map(lambda a: Action.from_json(a), json_actions)
 
     @staticmethod
