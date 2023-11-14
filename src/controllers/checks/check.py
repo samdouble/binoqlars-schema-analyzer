@@ -27,9 +27,9 @@ class Check:
         })
         # Execute actions
         for json_action in self.actions:
-            print(json_action)
-            #action_id = json_action["id"]
-            #action = next(filter(lambda a: a.get_id() == action_id, actions))
+            action_id = json_action["id"]
+            action = next(filter(lambda a: a.get_id() == action_id, actions))
+            print(action)
             #action.execute()
 
     def execute(self):
