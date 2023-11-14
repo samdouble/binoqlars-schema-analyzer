@@ -7,6 +7,7 @@ class ActionsController:
     def get(filt = {}):
         database = MainDbConnection.instance().get_database()
         collection = database['actions']
+        print(collection.count_documents(filt))
         json_actions = collection.find(filt)
         for j in json_actions:
             print("A")
