@@ -26,7 +26,6 @@ class Check:
             },
         })
         # Execute actions
-        print(actions[0].get_id(), type(actions[0]))
         for json_action in self.actions:
             action_id = json_action["id"]
             action = next(filter(lambda a: a.get_id() == action_id, actions))

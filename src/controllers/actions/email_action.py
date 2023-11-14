@@ -7,7 +7,7 @@ class EmailAction(Action):
         super().__init__(json_object)
         self.type = json_object["type"]
         self.recipients = json_object["recipients"]
-        print(self.id, self.recipients)
+        print('A', 2, self)
 
     @classmethod
     def from_json(cls, json_object):
