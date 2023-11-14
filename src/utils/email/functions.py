@@ -9,12 +9,6 @@ def send():
     # is still in the sandbox, this address must be verified.
     RECIPIENT = "samleafs@protonmail.com"
 
-    # Specify a configuration set. If you do not want to use a configuration
-    # set, comment the following variable, and the 
-    # ConfigurationSetName=CONFIGURATION_SET argument below.
-    # If necessary, replace us-west-2 with the AWS Region you're using for Amazon SES.
-    AWS_REGION = "ca-central-1"
-
     # The subject line for the email.
     SUBJECT = "Amazon SES Test (SDK for Python)"
 
@@ -47,8 +41,8 @@ def send():
         os.getenv('AWS_SECRET_ACCESS_KEY_'),
     )
     client = session.client(
-        service_name='ses',
-        region_name=AWS_REGION,
+        service_name="ses",
+        region_name="us-east-1",
     )
 
     # Try to send the email.
