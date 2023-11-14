@@ -2,19 +2,17 @@ import boto3
 from botocore.exceptions import ClientError
 
 def send():
-    SENDER = "Sender Name <sender@example.com>"
+    SENDER = "Sender Name <no-reply@binoqlars.com>"
 
     # Replace recipient@example.com with a "To" address. If your account 
     # is still in the sandbox, this address must be verified.
-    RECIPIENT = "recipient@example.com"
+    RECIPIENT = "samleafs@protonmail.com"
 
     # Specify a configuration set. If you do not want to use a configuration
     # set, comment the following variable, and the 
     # ConfigurationSetName=CONFIGURATION_SET argument below.
-    CONFIGURATION_SET = "ConfigSet"
-
     # If necessary, replace us-west-2 with the AWS Region you're using for Amazon SES.
-    AWS_REGION = "us-west-2"
+    AWS_REGION = "ca-central-1"
 
     # The subject line for the email.
     SUBJECT = "Amazon SES Test (SDK for Python)"
@@ -26,7 +24,8 @@ def send():
                 )
                 
     # The HTML body of the email.
-    BODY_HTML = """<html>
+    BODY_HTML = """
+    <html>
     <head></head>
     <body>
     <h1>Amazon SES Test (SDK for Python)</h1>
@@ -36,13 +35,13 @@ def send():
         AWS SDK for Python (Boto)</a>.</p>
     </body>
     </html>
-                """            
+    """            
 
     # The character encoding for the email.
     CHARSET = "UTF-8"
 
     # Create a new SES resource and specify a region.
-    client = boto3.client('ses',region_name=AWS_REGION)
+    client = boto3.client('ses', region_name=AWS_REGION)
 
     # Try to send the email.
     try:
@@ -70,9 +69,6 @@ def send():
                 },
             },
             Source=SENDER,
-            # If you are not using a configuration set, comment or delete the
-            # following line
-            ConfigurationSetName=CONFIGURATION_SET,
         )
     # Display an error if something goes wrong.	
     except ClientError as e:
