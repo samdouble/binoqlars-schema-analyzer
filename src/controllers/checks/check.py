@@ -29,8 +29,7 @@ class Check:
         for json_action in self.actions:
             action_id = json_action["id"]
             action = next(filter(lambda a: a.get_id() == action_id, actions))
-            print(action)
-            #action.execute()
+            action.execute()
 
     def execute(self):
         is_validated = self.validate()
