@@ -20,6 +20,11 @@ class Check:
 
     def _execute_actions(self):
         # Get referenced actions from the database
+        print({
+            "id": {
+                "$in": map(lambda a: a["id"], self.actions)
+            },
+        })
         actions = ActionsController.get({
             "id": {
                 "$in": map(lambda a: a["id"], self.actions)
