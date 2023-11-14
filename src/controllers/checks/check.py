@@ -27,7 +27,7 @@ class Check:
         })
         actions = ActionsController.get({
             "id": {
-                "$in": map(lambda a: a["id"], self.actions)
+                "$in": list(map(lambda a: a["id"], self.actions))
             },
         })
         # Execute actions
