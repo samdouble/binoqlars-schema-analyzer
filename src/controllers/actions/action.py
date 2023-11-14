@@ -7,7 +7,7 @@ class Action(ABC):
     
     @classmethod
     def from_json(cls, json_object):
-        from src.controllers.actions.action import EmailAction
+        from src.controllers.actions.email_action import EmailAction
 
         if (json_object["type"] == "Email"):
             return EmailAction(json_object)
