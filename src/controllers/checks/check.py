@@ -20,6 +20,7 @@ class Check:
 
     def _execute_actions(self):
         # Get referenced actions from the database
+        print(self.actions, type(self.actions))
         actions = ActionsController.get({
             "id": {
                 "$in": map(lambda a: a["id"], self.actions)
@@ -40,11 +41,8 @@ class Check:
         connection = ConnectionsController.get_one({
             "id": self.connection_id,
         })
-        print("Connection", connection)
 
         connection_string = MongoDbAtlasSecretsManager.get_connection_string(connection.key)
-        print("Connection string", connection_string)
-
         database_connection = MongoDbConnection(connection_string)
         database_client = database_connection.get_client()
         collection = database_client[connection.database][self.collection]
