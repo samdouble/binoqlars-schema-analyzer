@@ -8,6 +8,9 @@ class ActionsController:
         database = MainDbConnection.instance().get_database()
         collection = database['actions']
         json_actions = collection.find(filt)
+        for j in json_actions:
+            print("A")
+            print(j)
         print(type(json_actions))
         print(list(json_actions))
         print(json_actions[0], type(json_actions[0]))
