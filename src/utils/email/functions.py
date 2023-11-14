@@ -1,4 +1,5 @@
 import boto3
+import os
 from botocore.exceptions import ClientError
 
 def send():
@@ -41,7 +42,14 @@ def send():
     CHARSET = "UTF-8"
 
     # Create a new SES resource and specify a region.
-    client = boto3.client('ses', region_name=AWS_REGION)
+    session = boto3.session.Session(
+        os.getenv('AWS_ACCESS_KEY_ID_'),
+        os.getenv('AWS_SECRET_ACCESS_KEY_'),
+    )
+    client = session.client(
+        service_name='ses',
+        region_name=AWS_REGION,
+    )
 
     # Try to send the email.
     try:
