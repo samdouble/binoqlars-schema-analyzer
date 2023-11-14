@@ -13,7 +13,7 @@ class EmailAction(Action):
         return cls(json_object)
     
     def execute(self):
-        send()
+        send(self.recipients)
 
     def __str__(self):
         return self.id + " " + self.type

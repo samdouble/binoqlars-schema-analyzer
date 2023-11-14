@@ -1,15 +1,10 @@
 from abc import ABC
-import boto3
 from botocore.exceptions import ClientError
-import os
+from src.utils.aws_session import AwsSession
 
 class SecretsManager(ABC):
     def get_secret(secret_name):
-        session = boto3.session.Session(
-            os.getenv('AWS_ACCESS_KEY_ID_'),
-            os.getenv('AWS_SECRET_ACCESS_KEY_'),
-        )
-        client = session.client(
+        client = AwsSession.client(
             service_name='secretsmanager',
             region_name='ca-central-1'
         )
@@ -21,5 +16,4 @@ class SecretsManager(ABC):
         except ClientError as e:
             raise e
 
-        secret = get_secret_value_response['SecretString']
-        return secret
+        return get_secret_value_response['SecretString']

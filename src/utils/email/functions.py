@@ -1,13 +1,8 @@
-import boto3
-import os
 from botocore.exceptions import ClientError
+from src.utils.aws_session import AwsSession
 
-def send():
+def send(recipients):
     SENDER = "Sender Name <no-reply@binoqlars.com>"
-
-    # Replace recipient@example.com with a "To" address. If your account 
-    # is still in the sandbox, this address must be verified.
-    RECIPIENT = "samleafs@protonmail.com"
 
     # The subject line for the email.
     SUBJECT = "Amazon SES Test (SDK for Python)"
@@ -20,27 +15,24 @@ def send():
                 
     # The HTML body of the email.
     BODY_HTML = """
-    <html>
-    <head></head>
-    <body>
-    <h1>Amazon SES Test (SDK for Python)</h1>
-    <p>This email was sent with
-        <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
-        <a href='https://aws.amazon.com/sdk-for-python/'>
-        AWS SDK for Python (Boto)</a>.</p>
-    </body>
-    </html>
+        <html>
+        <head></head>
+        <body>
+            <h1>Amazon SES Test (SDK for Python)</h1>
+            <p>This email was sent with
+                <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
+                <a href='https://aws.amazon.com/sdk-for-python/'>AWS SDK for Python (Boto)</a>.
+            </p>
+        </body>
+        </html>
     """            
 
     # The character encoding for the email.
     CHARSET = "UTF-8"
 
     # Create a new SES resource and specify a region.
-    session = boto3.session.Session(
-        os.getenv('AWS_ACCESS_KEY_ID_'),
-        os.getenv('AWS_SECRET_ACCESS_KEY_'),
-    )
-    client = session.client(
+    
+    client = AwsSession.client(
         service_name="ses",
         region_name="us-east-1",
     )
@@ -50,9 +42,7 @@ def send():
         #Provide the contents of the email.
         response = client.send_email(
             Destination={
-                'ToAddresses': [
-                    RECIPIENT,
-                ],
+                'ToAddresses': recipients,
             },
             Message={
                 'Body': {
