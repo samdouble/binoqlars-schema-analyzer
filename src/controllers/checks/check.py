@@ -25,7 +25,7 @@ class Check:
                 "$in": map(lambda a: a["id"], self.actions)
             },
         })
-        print(actions)
+        print(list(actions))
         # Execute actions
         for json_action in self.actions:
             action_id = json_action["id"]
