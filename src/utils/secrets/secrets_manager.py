@@ -4,7 +4,7 @@ from src.utils.aws_session import AwsSession
 
 class SecretsManager(ABC):
     def get_secret(secret_name):
-        client = AwsSession.client(
+        client = AwsSession.get_session().client(
             service_name='secretsmanager',
             region_name='ca-central-1'
         )

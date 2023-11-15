@@ -14,6 +14,3 @@ class EmailAction(Action):
     
     def execute(self):
         send(self.recipients)
-
-    def __str__(self):
-        return self.id + " " + self.type
