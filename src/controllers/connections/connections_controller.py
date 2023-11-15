@@ -1,4 +1,5 @@
 from src.controllers.db import MainDbConnection
+from src.controllers.connections.connection import Connection
 
 class ConnectionsController:
 
@@ -6,4 +7,5 @@ class ConnectionsController:
     def get_one(filt = {}):
         database = MainDbConnection.instance().get_database()
         collection = database['connections']
-        return collection.find_one(filt)
+        json_connection = collection.find_one(filt)
+        return Connection.from_json(json_connection)
