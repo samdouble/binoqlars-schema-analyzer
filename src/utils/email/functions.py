@@ -32,7 +32,7 @@ def send(recipients):
 
     # Create a new SES resource and specify a region.
     
-    client = AwsSession.get_session().client(
+    client = AwsSession.instance().get_session().client(
         service_name="ses",
         region_name="us-east-1",
     )
