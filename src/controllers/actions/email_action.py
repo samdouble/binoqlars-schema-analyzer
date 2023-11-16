@@ -13,4 +13,4 @@ class EmailAction(Action):
         return cls(json_object)
     
     def execute(self):
-        send(self.recipients)
+        return send(self.recipients)

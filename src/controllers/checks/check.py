@@ -25,15 +25,17 @@ class Check:
             },
         })
         # Execute actions
+        results = []
         for json_action in self.actions:
             action_id = json_action["id"]
             action = next(filter(lambda a: a.get_id() == action_id, actions))
-            action.execute()
+            results.append(action.execute())
+        return results
 
     def execute(self):
         is_validated = self.validate()
         if (not is_validated):
-            self._execute_actions()
+            return self._execute_actions()
 
     def validate(self):
         connection = ConnectionsController.get_one({
