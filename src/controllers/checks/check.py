@@ -1,8 +1,6 @@
 import json
-from src.controllers.actions.action import Action
 from src.controllers.actions.actions_controller import ActionsController
 from src.controllers.connections.connections_controller import ConnectionsController
-from src.controllers.db import MainDbConnection
 from src.utils.database.mongodb_connection import MongoDbConnection
 from src.utils.secrets.mongodbatlas_secrets_manager import MongoDbAtlasSecretsManager
 
@@ -12,6 +10,7 @@ class Check:
     def from_json(cls, json_object):
         new_instance = cls()
         new_instance.id = json_object["id"]
+        new_instance.user_id = json_object["userId"]
         new_instance.connection_id = json_object["connectionId"]
         new_instance.collection = json_object["collection"]
         new_instance.filter = json_object["filter"]
