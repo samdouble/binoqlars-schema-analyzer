@@ -13,7 +13,7 @@ def handler(_event, _context):
         "userId": check.user_id,
         "checkId": check.id,
         "executionTime": end_time - start_time,
-        "result": result,
+        # "result": result,
     })
 
     return result

@@ -1,7 +1,7 @@
 import uuid
 from src.controllers.db import MainDbConnection
 
-class ConnectionsController:
+class LogsController:
 
     @staticmethod
     def create(json_object = {}):
