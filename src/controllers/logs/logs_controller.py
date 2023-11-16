@@ -8,6 +8,6 @@ class LogsController:
         database = MainDbConnection.instance().get_database()
         collection = database['logs']
         return collection.insert_one({
-            "id": uuid.uuid4(),
+            "id": str(uuid.uuid4()),
             **json_object,
         })
