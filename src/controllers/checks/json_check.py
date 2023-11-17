@@ -1,10 +1,10 @@
 import json
-from src.controllers.actions.actions_controller import ActionsController
+from src.controllers.checks.check import Check
 from src.controllers.connections.connections_controller import ConnectionsController
 from src.utils.database.mongodb_connection import MongoDbConnection
 from src.utils.secrets.mongodbatlas_secrets_manager import MongoDbAtlasSecretsManager
 
-class JsonCheck:
+class JsonCheck(Check):
 
     def __init__(self, json_object):
         super().__init__(json_object)
