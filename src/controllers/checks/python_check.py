@@ -13,6 +13,6 @@ class PythonCheck(Check):
     def validate(self):
         print(self.script)
         # TODO Use something else than eval() here. Not safe.
-        x = eval(self.script)
+        x = exec(self.script)
         print(x)
         return True
