@@ -14,7 +14,6 @@ class JsonCheck(Check):
     def from_json(cls, json_object):
         return cls(json_object)
 
-    @classmethod
     def validate(self):
         connection = ConnectionsController.get_one({
             "id": self.connection_id,

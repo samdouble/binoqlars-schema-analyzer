@@ -10,7 +10,6 @@ class PythonCheck(Check):
     def from_json(cls, json_object):
         return cls(json_object)
 
-    @classmethod
     def validate(self):
         print(self.script)
         # TODO Use something else than eval() here. Not safe.
