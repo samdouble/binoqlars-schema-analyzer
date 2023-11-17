@@ -4,6 +4,7 @@ class Action(ABC):
 
     def __init__(self, json_object):
         self.id = json_object["id"]
+        self.type = json_object["type"]
         self.user_id = json_object["userId"]
     
     @classmethod
