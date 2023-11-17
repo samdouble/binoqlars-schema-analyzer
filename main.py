@@ -6,6 +6,7 @@ from src.controllers.logs.logs_controller import LogsController
 def handler(_event, _context):
     start_time = time.time()
     check = ChecksController.get_one()
+    print(check)
     result = check.execute()
     end_time = time.time()
 

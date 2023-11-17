@@ -13,6 +13,7 @@ class PythonCheck(Check):
     @classmethod
     def validate(self):
         print(self.script)
+        # TODO Use something else than eval() here. Not safe.
         x = eval(self.script)
         print(x)
         return True
