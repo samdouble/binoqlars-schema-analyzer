@@ -12,7 +12,7 @@ class PythonCheck(Check):
 
     def validate(self):
         print(self.script)
-        # TODO Use something else than eval() here. Not safe.
+        # TODO Use something else than exec() here. Not safe.
         return_value = None
         exec(self.script + "\nreturn_value = handler()")
         print(return_value)

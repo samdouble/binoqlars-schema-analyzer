@@ -1,12 +1,12 @@
-# mongodb-schema-analyzer
+# binoqlars-schema-analyzer
 
-[![samdouble](https://circleci.com/gh/samdouble/mongodb-schema-analyzer.svg?style=svg)](https://circleci.com/gh/samdouble/mongodb-schema-analyzer)
+[![samdouble](https://circleci.com/gh/samdouble/binoqlars-schema-analyzer.svg?style=svg)](https://circleci.com/gh/samdouble/binoqlars-schema-analyzer)
 
 A schema analyzer for MongoDB
 
 ## Technologies & Languages
 
-- TypeScript
+- Python
 - MongoDB
 - CircleCI
 
