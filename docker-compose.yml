@@ -1,0 +1,67 @@
+version: "2"
+
+services:
+    analyzer:
+        container_name: analyzer
+        build:
+            context: .
+        env_file: dev.env
+        volumes:
+            - .:/analyzer
+            - ./node_modules:/analyzer/node_modules
+    #    links:
+    #        - mongo0
+    #        - mongo1
+    #        - mongo2
+    #        - mongodb-init
+
+    #mongodb-init:
+    #    build: ./db
+    #    depends_on:
+    #        - mongo0
+    #        - mongo1
+    #        - mongo2
+    #    env_file: .env
+    #    logging:
+    #        driver: none
+#
+    #mongo0:
+    #    container_name: mongo0
+    #    hostname: mongo0
+    #    image: mongo:5.0.12
+    #    ports:
+    #        - 27017:27017
+    #    expose:
+    #        - 27017
+    #    restart: always
+    #    volumes:
+    #        - ./volume-database:/data/db
+    #    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+    #    logging:
+    #        driver: none
+#
+    #mongo1:
+    #    container_name: mongo1
+    #    hostname: mongo1
+    #    image: mongo:5.0.12
+    #    ports:
+    #        - 27018:27017
+    #    expose:
+    #        - 27018
+    #    restart: always
+    #    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+    #    logging:
+    #        driver: none
+#
+    #mongo2:
+    #    container_name: mongo2
+    #    hostname: mongo2
+    #    image: mongo:5.0.12
+    #    ports:
+    #        - 27019:27017
+    #    expose:
+    #        - 27019
+    #    restart: always
+    #    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+    #    logging:
+    #        driver: none
