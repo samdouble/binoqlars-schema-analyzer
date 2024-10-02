@@ -40,6 +40,13 @@ select = [
 ignore = [
     "C901",  # too complex
     "W191",  # indentation contains tabs
+    "D100",  # missing docstring
+    "D101",  # missing docstring
+    "D102",  # missing docstring
+    "D103",  # missing docstring
+    "D104",  # missing docstring
+    "D105",  # missing docstring
+    "D107",  # missing docstring
     "D401"  # imperative mood
 ]
 

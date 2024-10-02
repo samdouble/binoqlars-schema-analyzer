@@ -1,8 +1,11 @@
-class Connection:
+from abc import ABC, abstractmethod
 
+
+class Connection(ABC):
+    @abstractmethod
     def __init__(self):
         pass
-    
+
     @classmethod
     def from_json(cls, json_object):
         new_instance = cls()

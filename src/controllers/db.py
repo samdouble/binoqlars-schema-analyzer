@@ -1,6 +1,8 @@
 import os
+
 from src.utils.database.mongodb_connection import MongoDbConnection
 from src.utils.singleton import Singleton
+
 
 @Singleton
 class MainDbConnection:

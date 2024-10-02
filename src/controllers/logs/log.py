@@ -1,9 +1,8 @@
-from datetime import datetime
 import uuid
+from datetime import datetime
+
 
 class Log:
-    
-    @classmethod
     def __init__(self, json_object):
         self.id = uuid.uuid4()
         self.created_at = datetime.today().replace(microsecond=0)
