@@ -29,10 +29,10 @@ jobs:
           poetry install
       - name: Lint
         run: |
-          poetry run pylint *.py
+          poetry run ruff check
       - name: Audit
         run: |
           pip-audit
       - name: Test
         run: |
-          python -m unittest *.py
+          poetry run pytest
