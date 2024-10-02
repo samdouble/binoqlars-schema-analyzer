@@ -1,6 +1,9 @@
-import boto3
 import os
+
+import boto3
+
 from src.utils.singleton import Singleton
+
 
 @Singleton
 class AwsSession:

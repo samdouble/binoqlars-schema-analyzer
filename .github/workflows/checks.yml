@@ -1,0 +1,38 @@
+name: Checks
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commitlint
+        uses: wagoid/commitlint-github-action@v6
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-python@v5 
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: |
+          pip install poetry
+          poetry install
+      - name: Lint
+        run: |
+          poetry run ruff check
+      - name: Audit
+        run: |
+          poetry run pip-audit
+      - name: Test
+        run: |
+          poetry run pytest --cov=. tests/

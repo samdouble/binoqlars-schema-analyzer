@@ -1,5 +1,6 @@
 from slack_sdk import WebClient
 
+
 class SlackClient:
 
     def __init__():

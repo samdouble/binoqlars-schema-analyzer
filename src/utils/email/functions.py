@@ -1,20 +1,21 @@
 from botocore.exceptions import ClientError
+
 from src.utils.aws_session import AwsSession
 
+
 def send(recipients):
-    SENDER = "Sender Name <no-reply@binoqlars.com>"
+    sender = "Sender Name <no-reply@binoqlars.com>"
 
     # The subject line for the email.
-    SUBJECT = "Amazon SES Test (SDK for Python)"
+    subject = "Amazon SES Test (SDK for Python)"
 
     # The email body for recipients with non-HTML email clients.
-    BODY_TEXT = ("Amazon SES Test (Python)\r\n"
-                "This email was sent with Amazon SES using the "
-                "AWS SDK for Python (Boto)."
-                )
-                
+    body_text = (
+        "Amazon SES Test (Python)\r\n" "This email was sent with Amazon SES using the " "AWS SDK for Python (Boto)."
+    )
+
     # The HTML body of the email.
-    BODY_HTML = """
+    body_html = """
         <html>
         <head></head>
         <body>
@@ -25,45 +26,49 @@ def send(recipients):
             </p>
         </body>
         </html>
-    """            
+    """
 
     # The character encoding for the email.
-    CHARSET = "UTF-8"
+    charset = "UTF-8"
 
     # Create a new SES resource and specify a region.
-    
-    client = AwsSession.instance().get_session().client(
-        service_name="ses",
-        region_name="us-east-1",
+
+    client = (
+        AwsSession.instance()
+        .get_session()
+        .client(
+            service_name="ses",
+            region_name="us-east-1",
+        )
     )
 
     # Try to send the email.
     try:
-        #Provide the contents of the email.
+        # Provide the contents of the email.
         response = client.send_email(
             Destination={
-                'ToAddresses': recipients,
+                "ToAddresses": recipients,
             },
             Message={
-                'Body': {
-                    'Html': {
-                        'Charset': CHARSET,
-                        'Data': BODY_HTML,
+                "Body": {
+                    "Html": {
+                        "Charset": charset,
+                        "Data": body_html,
                     },
-                    'Text': {
-                        'Charset': CHARSET,
-                        'Data': BODY_TEXT,
+                    "Text": {
+                        "Charset": charset,
+                        "Data": body_text,
                     },
                 },
-                'Subject': {
-                    'Charset': CHARSET,
-                    'Data': SUBJECT,
+                "Subject": {
+                    "Charset": charset,
+                    "Data": subject,
                 },
             },
-            Source=SENDER,
+            Source=sender,
         )
-    # Display an error if something goes wrong.	
+    # Display an error if something goes wrong.
     except ClientError as e:
-        return e.response['Error']['Message']
+        return e.response["Error"]["Message"]
     else:
-        return "Email sent! Message ID:" + response['MessageId']
+        return "Email sent! Message ID:" + response["MessageId"]

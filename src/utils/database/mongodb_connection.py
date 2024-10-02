@@ -1,6 +1,7 @@
-import os
 from pymongo import MongoClient
+
 from src.utils.database.connection import Connection
+
 
 class MongoDbConnection(Connection):
 
