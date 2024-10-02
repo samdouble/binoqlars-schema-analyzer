@@ -15,6 +15,8 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
+      - name: Commitlint
+        uses: wagoid/commitlint-github-action@v6
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node
@@ -23,11 +25,10 @@ jobs:
           python-version: '3.11'
       - name: Install
         run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
+          poetry install
       - name: Lint
         run: |
-          pylint *.py
+          poetry run pylint *.py
       - name: Audit
         run: |
           pip-audit
