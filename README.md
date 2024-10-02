@@ -1,4 +1,4 @@
-# mongodb-schema-analyzer
+# binoqlars-schema-analyzer
 
 [![samdouble](https://circleci.com/gh/samdouble/mongodb-schema-analyzer.svg?style=svg)](https://circleci.com/gh/samdouble/mongodb-schema-analyzer)
 
@@ -6,9 +6,10 @@ A schema analyzer for MongoDB
 
 ## Technologies & Languages
 
-- TypeScript
+- Python
 - MongoDB
-- CircleCI
+- AWS Secrets Manager
+- GitHub Actions
 
 ## Running locally
 
@@ -16,6 +17,7 @@ Create a file named **dev.env** at the root of the project and add the following
 - MONGO_URL
 
 Run the following command:
+
 ```
 docker-compose up --build
 ```
