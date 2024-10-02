@@ -32,7 +32,7 @@ jobs:
           poetry run ruff check
       - name: Audit
         run: |
-          pip-audit
+          poetry run pip-audit
       - name: Test
         run: |
           poetry run pytest
