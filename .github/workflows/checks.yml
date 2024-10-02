@@ -35,4 +35,4 @@ jobs:
           poetry run pip-audit
       - name: Test
         run: |
-          poetry run pytest
+          poetry run pytest --cov=. tests/
