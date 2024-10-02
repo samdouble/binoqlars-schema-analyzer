@@ -2,7 +2,7 @@
 name = "binoqlars-schema-analyzer"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["samdouble <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
